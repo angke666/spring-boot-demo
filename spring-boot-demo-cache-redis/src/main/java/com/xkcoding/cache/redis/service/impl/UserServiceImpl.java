@@ -16,6 +16,14 @@ import java.util.Map;
  * UserService
  * </p>
  *
+ * 下面用到的三个标签就是为了缓存，在redistributionConfig中配置了使用redis作为缓存
+ * 就是为了方便查询，如果添加或者修改的时候已经存了缓存了，那查询的时候就不会调用查询数据库的方法，而是直接从缓存中取值
+ * redis的key值格式就是（例如#user.id=1） user::1
+ * https://blog.csdn.net/dreamhai/article/details/80642010
+ * @CachePut 用于添加/修改方法
+ * @Cacheable 用于查询方法
+ * @CacheEvict 用于删除方法
+ *
  * @package: com.xkcoding.cache.redis.service.impl
  * @description: UserService
  * @author: yangkai.shen
