@@ -29,7 +29,7 @@ public class ThreadPoolConfig {
         threadPoolTaskExecutor.setKeepAliveSeconds(60);
         // 拒绝策略（一般都配置这个策略）
         threadPoolTaskExecutor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
-        threadPoolTaskExecutor.setThreadNamePrefix("diy-thread-");
+        threadPoolTaskExecutor.setThreadNamePrefix("demo-thread-");
 
         return threadPoolTaskExecutor;
     }
