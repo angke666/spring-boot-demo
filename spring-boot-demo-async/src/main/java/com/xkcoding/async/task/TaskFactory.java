@@ -27,6 +27,10 @@ public class TaskFactory {
 
     /**
      * 模拟5秒的异步任务
+     * 默认就是spring自带的线程池，可以配置，就是在application中配置的那种
+     * 使用@Async必须要在启动类贴@EnableAsync
+     *
+     * 经过测试发现，自定义了线程池后，默认就会使用自定义的线程池，不需要指定
      */
     @Async
     public Future<Boolean> asyncTask1() throws InterruptedException {

@@ -1,3 +1,4 @@
+# spring自带的线程池 一般自定义线程池ThreadPoolTaskExecutor
 spring:
   task:
     execution:
