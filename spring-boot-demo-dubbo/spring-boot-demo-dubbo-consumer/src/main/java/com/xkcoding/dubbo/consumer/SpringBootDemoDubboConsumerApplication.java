@@ -17,8 +17,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @version: V1.0
  * @modified: yangkai.shen
  */
-@SpringBootApplication
 @DubboComponentScan
+@SpringBootApplication
 public class SpringBootDemoDubboConsumerApplication {
 
     public static void main(String[] args) {
