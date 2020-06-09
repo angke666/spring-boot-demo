@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Slf4j
 public class HelloController {
-    @Reference
+    @Reference(mock = "com.xkcoding.dubbo.consumer.mock.MockHelloService")
     private HelloService helloService;
 
     @GetMapping("/sayHello")
