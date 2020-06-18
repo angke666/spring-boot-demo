@@ -4,3 +4,7 @@ server:
 spring:
   application:
     name: spring-security
+  security:
+    user:
+      name: qianjin
+      password: 123456
