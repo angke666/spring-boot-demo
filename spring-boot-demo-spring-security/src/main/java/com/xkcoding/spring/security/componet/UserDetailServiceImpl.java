@@ -20,6 +20,13 @@ public class UserDetailServiceImpl implements UserDetailsService {
     @Autowired
     private UserMappre userMappre;
 
+    /**
+     * 根据传来的用户名从数据库查出来封装成主体用于框架认证
+     * 真正的默认认证过程在org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider的authenticate()方法
+     * @param username
+     * @return
+     * @throws UsernameNotFoundException
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         // 从数据库获取该用户信息
@@ -30,7 +37,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
         }
         // 设置权限，把数据库的权限解析为UserDetails的权限集 commaSeparatedStringToAuthorityList()格式必须是逗号分开的权限，或者自己实现转换
         user.setAuthorities(AuthorityUtils.commaSeparatedStringToAuthorityList(user.getRoles()));
-
+//        user.setPassword("{bcrypt}" + user.getPassword());
         return user;
     }
 }

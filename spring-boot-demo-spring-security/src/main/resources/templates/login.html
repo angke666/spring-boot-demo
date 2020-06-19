@@ -8,8 +8,16 @@
 <div>
   <form action="/login/handler" method="post">
     <h2 align="center">登录界面</h2>
-    <input type="text" name="username" placeholder="账号" required>
-    <input type="password" name="password" placeholder="密码" required>
+    <input align="center" type="text" name="username" placeholder="账号" required><br/>
+    <input align="center" type="password" name="password" placeholder="密码" required><br/>
+    <div>
+      <input type="text" name="captcha" placeholder="captcha">
+      <img src="/captcha.jpg" alt="captcha" height="50px" width="150px" style="margin-left: 20px">
+    </div>
+    <p>
+      <input type="checkbox" name="remember-me">
+      记住我
+    </p>
     <button type="submit">登录</button>
   </form>
 </div>
