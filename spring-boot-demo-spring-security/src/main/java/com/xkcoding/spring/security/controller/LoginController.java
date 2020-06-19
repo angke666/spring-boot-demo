@@ -22,7 +22,7 @@ public class LoginController {
         return "login";
     }
 
-    @PostMapping("/success")
+    @PostMapping("/handler")
     public String success() {
         return "index";
     }

@@ -28,9 +28,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // 登录页面
                 .loginPage("/login")
                 // 登录成功处理
-                .loginProcessingUrl("/login/success")
+                .loginProcessingUrl("/login/handler")
                 // 登录成功处理 随便用哪个loginProcessingUrl或者successHandler
-    //            .successHandler(authenticationSuccessHandler())
+                .successHandler(authenticationSuccessHandler())
                 .failureHandler(authenticationFailureHandler())
                 .and()
             // 认证请求

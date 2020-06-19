@@ -1,5 +1,6 @@
 package com.xkcoding.spring.security;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -10,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Date 2020/6/18 10:28
  * @Version 1.0
  **/
+@MapperScan("com.xkcoding.spring.security.mapper")
 @SpringBootApplication
 public class SpringSecurityApplication {
 
