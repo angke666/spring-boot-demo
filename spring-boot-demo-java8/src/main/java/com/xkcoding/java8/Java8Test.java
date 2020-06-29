@@ -4,7 +4,11 @@ import com.xkcoding.java8.entity.Apple;
 import com.xkcoding.java8.lambda.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import static java.util.Comparator.comparing;
 
 /**
  * @ClassName Java8Test
@@ -42,6 +46,12 @@ public class Java8Test {
 
         // 不只苹果一种物品的属性筛选，扩大更多物品
         List<Apple> yellowBananas = AppleUtils.filterApples(list, (Predicate<Apple>) banana -> "yellow".equals(banana.getColor()));
+
+        // 排序
+        list.sort((apple1, apple2) -> apple1.getWeight().compareTo(apple2.getWeight()));
+        // lambda方法以引用
+        list.sort(comparing(Apple::getWeight));
+
     }
 
 }
