@@ -17,7 +17,7 @@ import static java.util.Comparator.comparing;
  * @Date 2020/6/24 10:35
  * @Version 1.0
  **/
-public class Java8Test {
+public class Java8LambdaTest {
 
     public static void main(String[] args) {
         List<Apple> list = new ArrayList<>();
