@@ -2,12 +2,10 @@ package com.xkcoding.java8;
 
 import com.xkcoding.java8.stream.Dish;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -50,15 +48,88 @@ public class Java8StreamTest {
             .map(Dish::getName)
             .limit(3)
             .collect(toList());
-        System.out.println(java8Result);
+        System.out.println(java8Result + " ");
 
         // 遍历
         for (Dish dish : menu) {
-            System.out.println(dish.getName());
+            System.out.print(dish.getName() + " ");
         }
+        System.out.println();
         System.out.println("******java8遍历******");
-        menu.forEach(dish -> System.out.println(dish.getName()));
+        menu.forEach(dish -> System.out.print(dish.getName() + " "));
+        System.out.println();
 
+        List<String> words = Arrays.asList("Hello", "World");
+
+        // 排成字符表,去除重复的字符(这样找出的List<String[]>,我们需要得到List<String>)
+        List<String[]> collect = words.stream()
+            .map(word -> word.split(""))
+            .distinct()
+            .collect(toList());
+        collect.forEach(strings -> {
+            for (int i = 0; i < strings.length; i++) {
+                System.out.print(strings[i] + " ");
+            }
+        });
+        System.out.println();
+        // 解决上面的问题
+        List<String> collect1 = words.stream()
+            .map(word -> word.split(""))
+            .flatMap(Arrays::stream)
+            .distinct()
+            .collect(toList());
+        collect1.forEach(System.out::print);
+        System.out.println();
+
+        // 查询和匹配类API,返回的boolean值
+        // 至少有一个素菜
+        boolean anyMatch = menu.stream().anyMatch(Dish::isVegetarian);
+        // 全是素菜
+        boolean allMatch = menu.stream().allMatch(Dish::isVegetarian);
+        // 没有素菜
+        boolean noneMatch = menu.stream().noneMatch(Dish::isVegetarian);
+        System.out.println("anyMatch:" + anyMatch);
+        System.out.println("allMatch:" + allMatch);
+        System.out.println("noneMatch:" + noneMatch);
+
+        // 随便查一个满足条件的菜
+        Optional<Dish> dishOptional = menu.stream()
+            .filter(Dish::isVegetarian)
+            .findAny();
+        // 是否存在
+        boolean present = dishOptional.isPresent();
+        // 返回存在的值,没存在就抛NoSuchElement异常
+        Dish dish = dishOptional.get();
+        // 存在就返回值,否则返回默认值
+        Dish dish1 = dishOptional.orElse(new Dish("招牌菜", false, 500, Dish.Type.MEAT));
+        System.out.println("是否存在:" + present);
+        System.out.println(dish);
+        System.out.println(dish1);
+
+        // 归约(求和,最大值最小值)
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        // 普通方法
+        int sum = 0;
+        for (Integer number : numbers) {
+            sum += number;
+        }
+        System.out.println(sum);
+        // java8(第一个参数是初始值,后面就是算法,可以相加,相乘等)
+//        sum = numbers.stream().reduce(0, (x, y) -> x + y);
+        sum = numbers.stream().reduce(0, Integer::sum);
+        System.out.println(sum);
+
+        Optional<Integer> max = numbers.stream().max(Comparator.naturalOrder());
+        max = numbers.stream().reduce(Integer::max);
+        System.out.println(max.get());
+
+        int sum1 = menu.stream()
+            .mapToInt(Dish::getCalories)
+            .sum();
+        System.out.println(sum1);
+
+        Map<Dish.Type, List<Dish>> map = menu.stream().collect(groupingBy(Dish::getType));
+        System.out.println(map);
     }
 
 }
