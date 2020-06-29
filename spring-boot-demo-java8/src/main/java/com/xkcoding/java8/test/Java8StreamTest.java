@@ -1,4 +1,4 @@
-package com.xkcoding.java8;
+package com.xkcoding.java8.test;
 
 import com.xkcoding.java8.stream.Dish;
 
