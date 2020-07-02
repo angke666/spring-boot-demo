@@ -3,10 +3,7 @@ package com.xkcoding.java8.test;
 import com.xkcoding.java8.entity.Apple;
 import com.xkcoding.java8.lambda.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static java.util.Comparator.comparing;
 
@@ -47,11 +44,13 @@ public class Java8LambdaTest {
         // 不只苹果一种物品的属性筛选，扩大更多物品
         List<Apple> yellowBananas = AppleUtils.filterApples(list, (Predicate<Apple>) banana -> "yellow".equals(banana.getColor()));
 
-        // 排序
+        // 排序 compareTo() apple1在前就是升序，在后就是降序
         list.sort((apple1, apple2) -> apple1.getWeight().compareTo(apple2.getWeight()));
-        // lambda方法以引用
+        // lambda方法以引用（升序）
         list.sort(comparing(Apple::getWeight));
-
+        // 反转（就是降序）
+        Collections.reverse(list);
+        list.forEach(apple -> System.out.println(apple.getWeight()));
     }
 
 }
