@@ -130,6 +130,10 @@ public class Java8StreamTest {
 
         Map<Dish.Type, List<Dish>> map = menu.stream().collect(groupingBy(Dish::getType));
         System.out.println(map);
+        String userDir = System.getProperty("user.dir");
+        System.out.println(userDir);
+
+
     }
 
 }
