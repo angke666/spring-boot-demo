@@ -1,0 +1,6 @@
+server:
+  port: 8080
+jodconverter:
+  local:
+    enabled: true
+    port-numbers: 8100

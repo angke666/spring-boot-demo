@@ -73,6 +73,7 @@
     <module>spring-boot-demo-spring-security</module>
     <module>spring-boot-demo-thread</module>
     <module>spring-boot-demo-java8</module>
+    <module>spring-boot-demo-openoffice</module>
   </modules>
   <packaging>pom</packaging>
 
