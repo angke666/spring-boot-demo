@@ -34,11 +34,10 @@ public class FileController {
 
             // 编码文件名
             String extension = FilenameUtils.getExtension(file.getOriginalFilename());
-            String name = UUID.randomUUID().toString();
-            String fileName = name + "." + extension;
+            String fileName = file.getOriginalFilename().replace(extension, "");
 
             // 保存原文件
-            File desc = new File("D:/Work/Resource/file" + File.separator + fileName);
+            File desc = new File("D:/Work/Resource/file" + File.separator + file.getOriginalFilename());
             if (!desc.getParentFile().exists())
             {
                 desc.getParentFile().mkdirs();
@@ -50,7 +49,7 @@ public class FileController {
             file.transferTo(desc);
 
             // 开始转换
-            String pdfFileName = desc.getParent() + File.separator + name + ".pdf";
+            String pdfFileName = newFile.getPath() + File.separator + fileName + ".pdf";
             converter.convert(desc).to(new File(pdfFileName)).execute();
 
             ServletOutputStream outputStream = response.getOutputStream();

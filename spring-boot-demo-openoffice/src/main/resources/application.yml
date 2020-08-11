@@ -4,3 +4,11 @@ jodconverter:
   local:
     enabled: true
     port-numbers: 8100
+    process-timeout: 600000
+    task-execution-timeout: 600000
+    task-queue-timeout: 600000
+spring:
+  servlet:
+    multipart:
+      max-file-size: 30
+      max-request-size: 30
