@@ -41,6 +41,7 @@
 
         <!-- curator 版本4.1.0 对应 zookeeper 版本 3.5.x -->
         <!-- curator 与 zookeeper 版本对应关系：https://curator.apache.org/zk-compatibility.html -->
+        <!-- curator 封装了zookeeper，实现zk各种应用场景，不需要重复造轮子，它提供了实现分布式锁的方法，所以非常简单直接使用即可 -->
         <dependency>
             <groupId>org.apache.curator</groupId>
             <artifactId>curator-recipes</artifactId>

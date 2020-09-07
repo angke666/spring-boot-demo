@@ -65,4 +65,45 @@ public class FileController {
         return "success";
     }
 
+    @PostMapping("/pdfToWord")
+    public String pdfToWord(@RequestParam("file") MultipartFile file, HttpServletResponse response) {
+        try {
+            File newFile = new File("D:/Work/Resource/file/word");
+            if (!newFile.exists()) {
+                newFile.mkdirs();
+            }
+
+            // 编码文件名
+            String extension = FilenameUtils.getExtension(file.getOriginalFilename());
+            String fileName = file.getOriginalFilename().replace(extension, "");
+
+            // 保存原文件
+            File desc = new File("D:/Work/Resource/file" + File.separator + file.getOriginalFilename());
+            if (!desc.getParentFile().exists())
+            {
+                desc.getParentFile().mkdirs();
+            }
+            if (!desc.exists())
+            {
+                desc.createNewFile();
+            }
+            file.transferTo(desc);
+
+            // 开始转换
+            String pdfFileName = newFile.getPath() + File.separator + fileName + ".doc";
+            converter.convert(desc).to(new File(pdfFileName)).execute();
+
+            ServletOutputStream outputStream = response.getOutputStream();
+            FileInputStream inputStream = new FileInputStream(new File(pdfFileName));
+            int i = IOUtils.copy(inputStream, outputStream);
+            System.out.println(i);
+            inputStream.close();
+            outputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return "success";
+    }
+
 }
