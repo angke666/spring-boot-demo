@@ -19,7 +19,18 @@ public class SpringBootDemoMqKafkaApplicationTests {
      */
     @Test
     public void testSend() {
-        kafkaTemplate.send(KafkaConsts.TOPIC_TEST, "hello,kafka...");
+        kafkaTemplate.send(KafkaConsts.TOPIC_TEST, "hello,kafka...").addCallback(success -> {
+            // 消息发送到的topic
+            String topic = success.getRecordMetadata().topic();
+            // 消息发送到的分区
+            int partition = success.getRecordMetadata().partition();
+            // 消息在分区内的offset
+            long offset = success.getRecordMetadata().offset();
+            System.out.println("消息发送成功：" + topic + "-" + partition + "-" + offset);
+        }, failure -> {
+            String message = failure.getMessage();
+            System.out.println("消息发送失败：" + message);
+        });
     }
 
 }

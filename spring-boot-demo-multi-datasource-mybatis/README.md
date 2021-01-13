@@ -360,10 +360,10 @@ public class UserServiceImplTest extends SpringBootDemoMultiDatasourceMybatisApp
 2019-01-21 14:55:41.313  INFO 7239 --- [           main] c.b.d.d.DynamicRoutingDataSource         : 动态数据源-加载 slave 成功
 2019-01-21 14:55:41.313  INFO 7239 --- [           main] c.b.d.d.DynamicRoutingDataSource         : 动态数据源-加载 master 成功
 2019-01-21 14:55:41.313  INFO 7239 --- [           main] c.b.d.d.DynamicRoutingDataSource         : 当前的默认数据源是单数据源，数据源名为 master
- _ _   |_  _ _|_. ___ _ |    _ 
-| | |\/|_)(_| | |_\  |_)||_|_\ 
-     /               |         
-                        3.0.7.1 
+ _ _   |_  _ _|_. ___ _ |    _
+| | |\/|_)(_| | |_\  |_)||_|_\
+     /               |
+                        3.0.7.1
 ```
 
 **主**库 **建议** 只执行 **INSERT** **UPDATE** **DELETE** 操作
